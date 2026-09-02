@@ -3,12 +3,12 @@ publish: true
 permalink: /index.md
 title: qwesasuke
 created: 2026-08-10T12:16:43.664Z
-modified: 2026-08-17T18:00:01.207Z
+modified: 2026-09-02T16:42:06.706Z
 ---
 
 Hi! I’m an indie game developer. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here.
 
-![[5. System/X. Attachments/Media/Photo/banner.jpg|25]]
+![[05.System/Attachments/Media/Photo/banner.webp|25]]
 
 # Links
 
@@ -20,6 +20,7 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 - [Itch.io](https://qwesasuke.itch.io/)
 - [DTF](https://dtf.ru/id3101902)
 - [Gamejolt](https://gamejolt.com/@qwesasuke/games)
+- [Youtube](https://www.youtube.com/@qqwesasuke)
 
 # My Games
 
