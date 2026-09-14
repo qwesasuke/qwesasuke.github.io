@@ -3,7 +3,7 @@ publish: true
 permalink: /index.md
 title: qwesasuke
 created: 2026-08-10T12:16:43.664Z
-modified: 2026-09-02T16:42:06.706Z
+modified: 2026-09-14T09:53:40.724Z
 ---
 
 Hi! I’m an indie game developer. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here.
@@ -22,12 +22,6 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 - [Gamejolt](https://gamejolt.com/@qwesasuke/games)
 - [Youtube](https://www.youtube.com/@qqwesasuke)
 
-# My Games
-
-# Map of Content
-
-## Articles
+# Articles
 
 - [[Пространственно-уютный страх в видеоиграх и не только]]
-
-[[short-cartoons]]
