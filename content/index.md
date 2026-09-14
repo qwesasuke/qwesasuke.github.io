@@ -8,7 +8,7 @@ modified: 2026-09-02T16:42:06.706Z
 
 Hi! I’m an indie game developer. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here.
 
-![[05.System/Attachments/Media/Photo/banner.webp|25]]
+![[06.System/Attachments/Media/Photo/banner.webp|25]]
 
 # Links
 
