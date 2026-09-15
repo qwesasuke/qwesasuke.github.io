@@ -2,7 +2,7 @@
 publish: true
 permalink: /ru/design-doc/designdocld59RU.md
 created: 2026-09-15T14:57:45.531Z
-modified: 2026-09-15T15:22:14.116Z
+modified: 2026-09-15T15:23:19.569Z
 ---
 
 SPLIT
@@ -34,7 +34,7 @@ Deponia: The Complete Journey: Включает сюжетные моменты,
 
 босс может быть каким то таким
 
-![[06.System/Attachments/Inbox/image3.png]]
+![[06.System/Attachments/Inbox/image3.webp]]
 
 Идея - переключение между личностями
 
@@ -135,7 +135,7 @@ Manhunt: Стелс-хоррор, где ориентирование по зв�
 
 Signal Zone (стратегия)
 
-![[06.System/Attachments/Inbox/image1.png]]
+![[06.System/Attachments/Inbox/image1.webp]]
 
 Voices of the Void
 
@@ -170,15 +170,15 @@ Petcope
 
 локации возможные
 
-![[06.System/Attachments/Inbox/image7.png]]
+![[06.System/Attachments/Inbox/image7.webp]]
 
-![[06.System/Attachments/Inbox/image5.png]]
+![[06.System/Attachments/Inbox/image5.webp]]
 
-![[06.System/Attachments/Inbox/image2.png]]
+![[06.System/Attachments/Inbox/image2.webp]]
 
-![[06.System/Attachments/Inbox/image6.png]]
+![[06.System/Attachments/Inbox/image6.webp]]
 
-![[06.System/Attachments/Inbox/image4.png]]
+![[06.System/Attachments/Inbox/image4.webp]]
 
-![[06.System/Attachments/Inbox/image8.png]]\
-![[06.System/Attachments/Inbox/image9.png]] v
+![[06.System/Attachments/Inbox/image8.webp]]\
+![[06.System/Attachments/Inbox/image9.webp]] v
