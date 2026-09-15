@@ -3,12 +3,12 @@ publish: true
 permalink: /index.md
 title: qwesasuke
 created: 2026-09-14T14:07:08.596Z
-modified: 2026-09-15T15:20:27.054Z
+modified: 2026-09-15T19:40:37.662Z
 ---
 
 Hi! I’m an indie game developer. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here.
 
-![[06.System/Attachments/Media/Images/banner.webp|25]]
+![[06.System/Attachments/Media/Images/important/banner.webp|25]]
 
 # Links
 
@@ -28,4 +28,6 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 
 # Design-Docs
 
-- [[designdocld59RU]]
+- [[designdocld59RU| LudumDare 59]]
+- [[sibjammay26|Сибирский Геймджем Май 2026]]
+- [[SibNovemnber25|Сибирский Геймджем, Ноябрь 25]]
