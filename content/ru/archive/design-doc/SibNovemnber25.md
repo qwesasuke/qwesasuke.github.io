@@ -2,7 +2,7 @@
 publish: true
 permalink: /ru/archive/design-doc/SibNovemnber25.md
 created: 2026-09-15T19:35:14.496Z
-modified: 2026-09-15T19:40:55.833Z
+modified: 2026-09-15T19:42:58.726Z
 ---
 
 Табу:
@@ -41,7 +41,7 @@ Sci-fi проклятая тема.
 
 Бумажный змей, как путеводитель - нарратор
 
-![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image7.png]]
+![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image7.webp]]
 
 Сборщик урожая - харвест мун, стардью валли
 
@@ -77,7 +77,7 @@ visual - Edenwound
 
 Имеет не только один смысл - только надо предупредить игроков об этом смысле
 
-![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image1.png]]
+![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image1.webp]]
 
 Нужно изготавливать таблички с клише фразами - ОТЛИЧНОЕ КОМБО
 
@@ -151,14 +151,14 @@ idle
 
 Брейншторм - 2
 
-![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image10.png]]
+![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image10.webp]]
 
 Первый прогресс
 
-![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image3.png]]
+![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image3.webp]]
 
-![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image8.png]] ![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image5.png]] ![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image4.png]]
+![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image8.webp]] ![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image5.webp]] ![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image4.webp]]
 
 Начало построения концепции
 
-![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image9.png]]
+![[06.System/Attachments/Media/Images/Groups/sib-m-25/sibM25-image9.webp]]
