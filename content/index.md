@@ -2,15 +2,15 @@
 publish: true
 permalink: /index.md
 title: qwesasuke
-created: 2026-09-14T14:07:08.596Z
-modified: 2026-09-15T19:53:19.355Z
+created: 2026-09-14T19:07:08+05:00
+modified: 2026-10-02T19:20:47+05:00
 ---
+
+![[old/06.System/Attachments/BInaryFiles/Media/Images/important/banner.webp|25]]
 
 Hi! I’m an indie game developer. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here.
 
-![[06.System/Attachments/Media/Images/important/banner.webp|25]]
-
-# Links
+###### Links
 
 - [Telegram](https://t.me/qwesasuke)
 - [Siberian Game Jam](https://platform.sibgamejam.com/games/qwesasuke/sibjammay26/jams)
@@ -22,12 +22,16 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 - [Gamejolt](https://gamejolt.com/@qwesasuke/games)
 - [Youtube](https://www.youtube.com/@qqwesasuke)
 
-# Articles
+###### Articles
 
 - [[Пространственно-уютный страх в видеоиграх и не только]]
 
-# Design-Docs
+###### Design-Docs
 
 - [[LudumDare-59]]
-- [[SIberian-GameJam-May-2026]]
 - [[SiberianGameJam-November-2025]]
+- [[SIberian-GameJam-May-2026]]
+
+###### Tracks
+
+- [anxious calm - YouTube](https://www.youtube.com/watch?v=mTh96JZiMtA)

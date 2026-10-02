@@ -12,7 +12,7 @@ GamePlay
 Арена (локация) - основное место игры.\
 Левел дизайн локации в духе карт квейк:
 
-![[06.System/Attachments/Media/Images/Groups/sibm-26/sibm26-image2.webp]]
+![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image2.webp]]
 
 Главный герой сражается с противниками на Арене.\
 После победы игроку предоставляется хаб.\
@@ -77,7 +77,7 @@ GamePlay
 
 reference
 
-![[06.System/Attachments/Media/Images/Groups/sibm-26/sibm26-image1.webp]]
+![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image1.webp]]
 
 Какие нибудь пассивные оружия как в вампайр лайках
 
@@ -87,7 +87,7 @@ reference
 Дальник (зомби стоящий на месте или в воздухе)\
 Танк (милишник)
 
-![[06.System/Attachments/Media/Images/Groups/sibm-26/sibm26-image3.webp]]
+![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image3.webp]]
 
 Visual
 
@@ -97,9 +97,9 @@ Visual
 
 https://www.youtube.com/watch?v=o1hggJOIY\_c\&list=RDo1hggJOIY\_c\&start\_radio=1
 
-![[06.System/Attachments/Media/Images/Groups/sibm-26/sibm26-image5.webp]]
+![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image5.webp]]
 
-![[06.System/Attachments/Media/Images/Groups/sibm-26/sibm26-image4.webp]]
+![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image4.webp]]
 
 Polishing features
 
