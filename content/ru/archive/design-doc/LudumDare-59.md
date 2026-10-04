@@ -2,7 +2,7 @@
 publish: true
 permalink: /ru/archive/design-doc/LudumDare-59.md
 created: 2026-09-15T14:57:45.531Z
-modified: 2026-09-15T19:29:57.005Z
+modified: 2026-10-03T12:43:39.603Z
 ---
 
 SPLIT

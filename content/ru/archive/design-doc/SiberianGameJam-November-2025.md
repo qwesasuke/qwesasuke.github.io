@@ -1,25 +1,24 @@
 ---
 publish: true
 permalink: /ru/archive/design-doc/SiberianGameJam-November-2025.md
-created: 2026-09-15T19:35:14.496Z
-modified: 2026-09-15T19:47:30.022Z
+created: 2026-09-16T00:35:14+05:00
+modified: 2026-10-04T16:44:09+05:00
 ---
 
-Табу:
+- табу
+  - Осн критерии:
+    - визуал
+    - механики
+    - нарратив
+  - Думаю должно быть в рамках одного экрана
+  - Длительность 15-20 минут МАКС
+  - Стараться исключать стратегии (не получилось)
+  - Брейншторм на 15 пот. тем:
+  - Предпочтения: cuphead лайк, сурвайвл, манипулятор чисел (азартные)
 
-Осн критерии: визуал, механики, нарратив
+# Темы
 
-Думаю должно быть в рамках одного экрана
-
-Длительность 15-20 минут МАКС
-
-Стараться исключать стратегии (не получилось)
-
-Брейншторм на 15 пот. тем:
-
-Предпочтения: cuphead лайк, сурвайвл, манипулятор чисел (азартные)
-
-## 42:
+## 42
 
 В Spore есть ачивка, которая выдается за нахождение центра галактики.
 
@@ -145,20 +144,20 @@ idle
 
 - опять же слишком масштабно
 
-Брейншторм - 1
+# Прозрение
+
+## Брейншторм 1
 
 ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image2.webp]]
 
-Брейншторм - 2
+## Брейншторм 2
 
 ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image10.webp]]
 
-Первый прогресс
+## Первый прогресс
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image3.webp]]
+![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image3.webp]]![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image8.webp]] ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image5.webp]] ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image4.webp]]
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image8.webp]] ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image5.webp]] ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image4.webp]]
-
-Начало построения концепции
+## Начало построения концепции
 
 ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image9.webp]]

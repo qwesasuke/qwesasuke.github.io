@@ -2,7 +2,7 @@
 publish: true
 permalink: /ru/archive/design-doc/SIberian-GameJam-May-2026.md
 created: 2026-09-15T19:28:48.561Z
-modified: 2026-09-15T19:34:36.670Z
+modified: 2026-10-03T12:43:39.563Z
 ---
 
 GamePlay
