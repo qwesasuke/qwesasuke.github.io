@@ -37,9 +37,6 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 - [anxious calm - YouTube](https://www.youtube.com/watch?v=mTh96JZiMtA)
 
 ```base
-filters:
-  and:
-    - note['dg-publish'] == true
 views:
   - type: table
     name: table
