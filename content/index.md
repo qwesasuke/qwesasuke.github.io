@@ -3,7 +3,7 @@ publish: true
 permalink: /index.md
 title: qwesasuke
 created: 2026-09-14T19:07:08+05:00
-modified: 2026-10-06T21:09:30+05:00
+modified: 2026-10-06T21:10:59+05:00
 ---
 
 ![[old/06.System/Attachments/BInaryFiles/Media/Images/important/banner.webp|25]]
@@ -39,7 +39,6 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 ```base
 filters:
   and:
-    - file.folder.contains("old/01.Spaces/03.Digital Garden")
     - note["dg-publish"] == true
 views:
   - type: table
@@ -47,4 +46,7 @@ views:
     order:
       - file.name
       - category
+    columnSize:
+      file.name: 334
+
 ```
