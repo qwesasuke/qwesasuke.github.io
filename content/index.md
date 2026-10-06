@@ -39,10 +39,10 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 ```base
 filters:
   and:
-    - note["dg-publish"] == true
+    - note['dg-publish'] == true
 views:
   - type: table
-    name: представление
+    name: table
     order:
       - file.name
       - category
