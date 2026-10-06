@@ -3,7 +3,7 @@ publish: true
 permalink: /index.md
 title: qwesasuke
 created: 2026-09-14T19:07:08+05:00
-modified: 2026-10-06T21:10:59+05:00
+modified: 2026-10-06T21:19:21+05:00
 ---
 
 ![[old/06.System/Attachments/BInaryFiles/Media/Images/important/banner.webp|25]]
@@ -35,15 +35,3 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 ###### Tracks
 
 - [anxious calm - YouTube](https://www.youtube.com/watch?v=mTh96JZiMtA)
-
-```base
-views:
-  - type: table
-    name: table
-    order:
-      - file.name
-      - category
-    columnSize:
-      file.name: 334
-
-```
