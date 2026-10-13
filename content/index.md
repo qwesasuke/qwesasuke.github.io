@@ -10,7 +10,7 @@ modified: 2026-10-06T21:19:21+05:00
 
 Hi! I’m an indie game developer. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here.
 
-###### Links
+# Links
 
 - [Telegram](https://t.me/qwesasuke)
 - [Siberian Game Jam](https://platform.sibgamejam.com/games/qwesasuke/sibjammay26/jams)
@@ -22,16 +22,16 @@ Hi! I’m an indie game developer. I create games, experiment with game design, 
 - [Gamejolt](https://gamejolt.com/@qwesasuke/games)
 - [Youtube](https://www.youtube.com/@qqwesasuke)
 
-###### Articles
+# Articles
 
 - [[Пространственно-уютный страх в видеоиграх и не только]]
 
-###### Design-Docs
+# Design-Docs
 
 - [[SiberianGameJam-November-2025]]
 - [[LudumDare-59]]
 - [[SIberian-GameJam-May-2026]]
 
-###### Tracks
+# Tracks
 
 - [anxious calm - YouTube](https://www.youtube.com/watch?v=mTh96JZiMtA)
