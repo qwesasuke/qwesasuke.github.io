@@ -3,10 +3,10 @@ publish: true
 permalink: /index.md
 title: qwesasuke
 created: 2026-09-14T19:07:08+05:00
-modified: 2026-10-13T22:20:57+05:00
+modified: 2026-10-13T22:26:10+05:00
 ---
 
-Hi! I’m an **indie game developer**. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here.
+Hi! I’m an **indie game developer**. I create games, experiment with game design, and gather my knowledge, ideas, and useful resources here. You are play my game [here](https://qwesasuke.itch.io/).
 
 # 🌎Links
 
