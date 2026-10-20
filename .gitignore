@@ -1,4 +1,5 @@
 .DS_Store
+.gitignore
 node_modules
 public
 prof
@@ -8,8 +9,4 @@ tsconfig.tsbuildinfo
 private/
 .replit
 replit.nix
-SettingsProfiles
-content/.trash
-.env
-*-ez.py
-*ez-ignore*
+.trash/

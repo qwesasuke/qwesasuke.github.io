@@ -1,18 +1,18 @@
 import esbuild from "esbuild"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
-import { Processor, unified } from "unified"
-import { Root as MDRoot } from "remark-parse/lib"
-import { Root as HTMLRoot } from "hast"
-import { MarkdownContent, ProcessedContent } from "../plugins/vfile"
+import { type Processor, unified } from "unified"
+import type { Root as MDRoot } from "mdast"
+import type { Root as HTMLRoot } from "hast"
+import type { MarkdownContent, ProcessedContent } from "../plugins/vfile"
 import { PerfTimer } from "../util/perf"
 import { read } from "to-vfile"
-import { FilePath, QUARTZ, slugifyFilePath } from "../util/path"
+import { type FilePath, QUARTZ, slugifyFilePath } from "../util/path"
 import path from "path"
-import workerpool, { Promise as WorkerPromise } from "workerpool"
+import workerpool, { type Promise as WorkerPromise } from "workerpool"
 import { QuartzLogger } from "../util/log"
 import { trace } from "../util/trace"
-import { BuildCtx, WorkerSerializableBuildCtx } from "../util/ctx"
+import type { BuildCtx, WorkerSerializableBuildCtx } from "../util/ctx"
 import { styleText } from "util"
 
 export type QuartzMdProcessor = Processor<MDRoot, MDRoot, MDRoot>
@@ -171,49 +171,50 @@ export async function parseMarkdown(ctx: BuildCtx, fps: FilePath[]): Promise<Pro
       maxWorkers: concurrency,
       workerType: "thread",
     })
+    const errorHandler = (err: any) => {
+      console.error(err)
+      process.exit(1)
+    }
+
     const serializableCtx: WorkerSerializableBuildCtx = {
       buildId: ctx.buildId,
       argv: ctx.argv,
       allSlugs: ctx.allSlugs,
       allFiles: ctx.allFiles,
       incremental: ctx.incremental,
-      virtualPages: [],
     }
 
-    try {
-      const textToMarkdownPromises: WorkerPromise<MarkdownContent[]>[] = []
-      let processedFiles = 0
-      for (const chunk of chunks(fps, CHUNK_SIZE)) {
-        textToMarkdownPromises.push(pool.exec("parseMarkdown", [serializableCtx, chunk]))
-      }
-
-      const mdResults: Array<MarkdownContent[]> = await Promise.all(
-        textToMarkdownPromises.map(async (promise) => {
-          const result = await promise
-          processedFiles += result.length
-          log.updateText(`text->markdown ${styleText("gray", `${processedFiles}/${fps.length}`)}`)
-          return result
-        }),
-      )
-
-      const markdownToHtmlPromises: WorkerPromise<ProcessedContent[]>[] = []
-      processedFiles = 0
-      for (const mdChunk of mdResults) {
-        markdownToHtmlPromises.push(pool.exec("processHtml", [serializableCtx, mdChunk]))
-      }
-      const results: ProcessedContent[][] = await Promise.all(
-        markdownToHtmlPromises.map(async (promise) => {
-          const result = await promise
-          processedFiles += result.length
-          log.updateText(`markdown->html ${styleText("gray", `${processedFiles}/${fps.length}`)}`)
-          return result
-        }),
-      )
-
-      res = results.flat()
-    } finally {
-      await pool.terminate()
+    const textToMarkdownPromises: WorkerPromise<MarkdownContent[]>[] = []
+    let processedFiles = 0
+    for (const chunk of chunks(fps, CHUNK_SIZE)) {
+      textToMarkdownPromises.push(pool.exec("parseMarkdown", [serializableCtx, chunk]))
     }
+
+    const mdResults: Array<MarkdownContent[]> = await Promise.all(
+      textToMarkdownPromises.map(async (promise) => {
+        const result = await promise
+        processedFiles += result.length
+        log.updateText(`text->markdown ${styleText("gray", `${processedFiles}/${fps.length}`)}`)
+        return result
+      }),
+    ).catch(errorHandler)
+
+    const markdownToHtmlPromises: WorkerPromise<ProcessedContent[]>[] = []
+    processedFiles = 0
+    for (const mdChunk of mdResults) {
+      markdownToHtmlPromises.push(pool.exec("processHtml", [serializableCtx, mdChunk]))
+    }
+    const results: ProcessedContent[][] = await Promise.all(
+      markdownToHtmlPromises.map(async (promise) => {
+        const result = await promise
+        processedFiles += result.length
+        log.updateText(`markdown->html ${styleText("gray", `${processedFiles}/${fps.length}`)}`)
+        return result
+      }),
+    ).catch(errorHandler)
+
+    res = results.flat()
+    await pool.terminate()
   }
 
   log.end(`Parsed ${res.length} Markdown files in ${perf.timeSince()}`)

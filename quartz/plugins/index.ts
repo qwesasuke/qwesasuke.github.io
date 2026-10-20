@@ -1,4 +1,5 @@
 import { StaticResources } from "../util/resources"
+import { FilePath, FullSlug } from "../util/path"
 import { BuildCtx } from "../util/ctx"
 
 export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
@@ -44,7 +45,12 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
 export * from "./transformers"
 export * from "./filters"
 export * from "./emitters"
-export * from "./types"
-export * from "./config"
-export * as PageTypes from "./pageTypes"
-export * as PluginLoader from "./loader"
+
+declare module "vfile" {
+  // inserted in processors.ts
+  interface DataMap {
+    slug: FullSlug
+    filePath: FilePath
+    relativePath: FilePath
+  }
+}

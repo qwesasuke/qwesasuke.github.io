@@ -26,10 +26,9 @@ export type CSSResource = {
 export function JSResourceToScriptElement(resource: JSResource, preserve?: boolean): JSX.Element {
   const scriptType = resource.moduleType ?? "application/javascript"
   const spaPreserve = preserve ?? resource.spaPreserve
-
   if (resource.contentType === "external") {
     return (
-      <script key={resource.src} src={resource.src} type={scriptType} data-persist={spaPreserve} />
+      <script key={resource.src} src={resource.src} type={scriptType} spa-preserve={spaPreserve} />
     )
   } else {
     const content = resource.script
@@ -37,7 +36,7 @@ export function JSResourceToScriptElement(resource: JSResource, preserve?: boole
       <script
         key={randomUUID()}
         type={scriptType}
-        data-persist={spaPreserve}
+        spa-preserve={spaPreserve}
         dangerouslySetInnerHTML={{ __html: content }}
       ></script>
     )
@@ -47,7 +46,7 @@ export function JSResourceToScriptElement(resource: JSResource, preserve?: boole
 export function CSSResourceToStyleElement(resource: CSSResource, preserve?: boolean): JSX.Element {
   const spaPreserve = preserve ?? resource.spaPreserve
   if (resource.inline ?? false) {
-    return <style dangerouslySetInnerHTML={{ __html: resource.content }} />
+    return <style>{resource.content}</style>
   } else {
     return (
       <link
@@ -55,7 +54,7 @@ export function CSSResourceToStyleElement(resource: CSSResource, preserve?: bool
         href={resource.content}
         rel="stylesheet"
         type="text/css"
-        data-persist={spaPreserve}
+        spa-preserve={spaPreserve}
       />
     )
   }
@@ -68,13 +67,6 @@ export interface StaticResources {
 }
 
 export type StringResource = string | string[] | undefined
-
-export function normalizeResource(resource: StringResource): string[] {
-  if (!resource) return []
-  if (Array.isArray(resource)) return resource
-  return [resource]
-}
-
 export function concatenateResources(...resources: StringResource[]): StringResource {
   return resources
     .filter((resource): resource is string | string[] => resource !== undefined)

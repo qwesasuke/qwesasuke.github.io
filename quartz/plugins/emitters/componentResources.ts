@@ -1,4 +1,3 @@
-import { createHash } from "crypto"
 import { FullSlug, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
@@ -6,46 +5,38 @@ import { QuartzEmitterPlugin } from "../types"
 import spaRouterScript from "../../components/scripts/spa.inline"
 // @ts-ignore
 import popoverScript from "../../components/scripts/popover.inline"
-import baseStyles from "../../styles/base.scss"
-import customStyles from "../../styles/custom.scss"
+// @ts-ignore
+import { transform as transpile } from "esbuild"
+import { Features, transform } from "lightningcss"
+// @ts-ignore
+import footnotePopoverScript from "../../components/scripts/footnotePopover.inline"
+// @ts-ignore
+import footnoteCollapseScript from "../../components/scripts/footnoteCollapse.inline"
 import popoverStyle from "../../components/styles/popover.scss"
-import { BuildCtx } from "../../util/ctx"
 import { QuartzComponent } from "../../components/types"
-import { normalizeResource } from "../../util/resources"
-import { componentRegistry } from "../../components/registry"
+import styles from "../../styles/custom.scss"
+import { BuildCtx } from "../../util/ctx"
 import {
   googleFontHref,
   googleFontSubsetHref,
   joinStyles,
   processGoogleFonts,
 } from "../../util/theme"
-import { Features, transform } from "lightningcss"
-import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
-
-function hashContent(content: string | Buffer): string {
-  return createHash("sha256").update(content).digest("hex").slice(0, 8)
-}
 
 type ComponentResources = {
   css: string[]
   beforeDOMLoaded: string[]
   afterDOMLoaded: string[]
-  componentCssStrings: Set<string>
 }
 
 function getComponentResources(ctx: BuildCtx): ComponentResources {
   const allComponents: Set<QuartzComponent> = new Set()
-
   for (const emitter of ctx.cfg.plugins.emitters) {
     const components = emitter.getQuartzComponents?.(ctx) ?? []
     for (const component of components) {
       allComponents.add(component)
     }
-  }
-
-  for (const component of componentRegistry.getAllComponents()) {
-    allComponents.add(component)
   }
 
   const componentResources = {
@@ -54,18 +45,27 @@ function getComponentResources(ctx: BuildCtx): ComponentResources {
     afterDOMLoaded: new Set<string>(),
   }
 
+  function normalizeResource(resource: string | string[] | undefined): string[] {
+    if (!resource) return []
+    if (Array.isArray(resource)) return resource
+    return [resource]
+  }
+
   for (const component of allComponents) {
     const { css, beforeDOMLoaded, afterDOMLoaded } = component
-    for (const c of normalizeResource(css)) componentResources.css.add(c)
-    for (const b of normalizeResource(beforeDOMLoaded)) componentResources.beforeDOMLoaded.add(b)
-    for (const a of normalizeResource(afterDOMLoaded)) componentResources.afterDOMLoaded.add(a)
+    const normalizedCss = normalizeResource(css)
+    const normalizedBeforeDOMLoaded = normalizeResource(beforeDOMLoaded)
+    const normalizedAfterDOMLoaded = normalizeResource(afterDOMLoaded)
+
+    normalizedCss.forEach((c) => componentResources.css.add(c))
+    normalizedBeforeDOMLoaded.forEach((b) => componentResources.beforeDOMLoaded.add(b))
+    normalizedAfterDOMLoaded.forEach((a) => componentResources.afterDOMLoaded.add(a))
   }
 
   return {
     css: [...componentResources.css],
     beforeDOMLoaded: [...componentResources.beforeDOMLoaded],
     afterDOMLoaded: [...componentResources.afterDOMLoaded],
-    componentCssStrings: new Set(componentResources.css),
   }
 }
 
@@ -87,6 +87,14 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
   // popovers
   if (cfg.enablePopovers) {
     componentResources.afterDOMLoaded.push(popoverScript)
+    componentResources.css.push(popoverStyle)
+  }
+
+  // footnote popovers (always active, independent of enablePopovers)
+  componentResources.afterDOMLoaded.push(footnotePopoverScript)
+  // footnote collapse (wrap section.footnotes in <details> collapsed by default)
+  componentResources.afterDOMLoaded.push(footnoteCollapseScript)
+  if (!cfg.enablePopovers) {
     componentResources.css.push(popoverStyle)
   }
 
@@ -233,29 +241,6 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
       \`
       document.head.appendChild(matomoScript);
     `)
-  } else if (cfg.analytics?.provider === "vercel") {
-    /**
-     * script from {@link https://vercel.com/docs/analytics/quickstart?framework=html#add-the-script-tag-to-your-site|Vercel Docs}
-     */
-    componentResources.beforeDOMLoaded.push(`
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    `)
-    componentResources.afterDOMLoaded.push(`
-      const vercelInsightsScript = document.createElement("script")
-      vercelInsightsScript.src = "/_vercel/insights/script.js"
-      vercelInsightsScript.defer = true
-      document.head.appendChild(vercelInsightsScript)
-    `)
-  } else if (cfg.analytics?.provider === "rybbit") {
-    componentResources.afterDOMLoaded.push(`
-      const rybbitScript = document.createElement("script");
-      rybbitScript.src = "${cfg.analytics.host ?? "https://app.rybbit.io"}/api/script.js";
-      rybbitScript.setAttribute("data-site-id", "${cfg.analytics.siteId}");
-      rybbitScript.async = true;
-      rybbitScript.defer = true;
-
-      document.head.appendChild(rybbitScript);
-    `)
   }
 
   if (cfg.enableSPA) {
@@ -275,7 +260,7 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
 export const ComponentResources: QuartzEmitterPlugin = () => {
   return {
     name: "ComponentResources",
-    async *emit(ctx, _content, resources) {
+    async *emit(ctx, _content, _resources) {
       const cfg = ctx.cfg.configuration
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
@@ -328,194 +313,47 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
       // that everyone else had the chance to register a listener for it
       addGlobalPageResources(ctx, componentResources)
 
-      const useHashing = !ctx.argv.serve
-
-      // Separate global CSS (added by addGlobalPageResources, e.g. popover CSS)
-      // from component CSS. Global CSS was pushed onto componentResources.css
-      // AFTER getComponentResources() returned, so it's not in componentCssStrings.
-      const globalCss = componentResources.css.filter(
-        (c) => !componentResources.componentCssStrings.has(c),
-      )
-
-      // Core CSS: theme + fonts + global CSS + base styles (no per-component CSS)
-      const quartzBase = joinStyles(
+      const stylesheet = joinStyles(
         ctx.cfg.configuration.theme,
         googleFontsStyleSheet,
-        ...globalCss,
-        baseStyles,
+        ...componentResources.css,
+        styles,
       )
-      const stylesheet = `@layer quartz-base {\n${quartzBase}\n}\n${customStyles}`
 
-      const prescript = await joinScripts(componentResources.beforeDOMLoaded)
-
-      let postscript: string
-      if (!useHashing) {
-        // Serve mode: monolithic IIFE bundle for fast rebuilds
-        postscript = await joinScripts(componentResources.afterDOMLoaded)
-      } else {
-        // Production: emit each afterDOMLoaded script as an individual cached file,
-        // then generate an orchestrator that imports them with correct ordering.
-        // The last script is always the SPA router (pushed last by addGlobalPageResources),
-        // which must execute after all other scripts register their nav listeners.
-        const scripts = componentResources.afterDOMLoaded
-        const scriptFilenames: string[] = []
-
-        for (let i = 0; i < scripts.length; i++) {
-          const hash = hashContent(scripts[i])
-          const slug = `static/scripts/script-${i}-${hash}`
-          const filename = `${slug}.js`
-          scriptFilenames.push(filename)
-
-          yield write({
-            ctx,
-            slug: slug as FullSlug,
-            ext: ".js",
-            content: scripts[i],
-          })
-        }
-
-        // Generate orchestrator: import all component scripts in parallel,
-        // then import SPA router last (it dispatches the initial nav event)
-        const componentImports = scriptFilenames
-          .slice(0, -1)
-          .map((f) => `import("./${f}")`)
-          .join(",\n  ")
-
-        const spaImport = `await import("./${scriptFilenames[scriptFilenames.length - 1]}");`
-
-        postscript = [`await Promise.all([\n  ${componentImports}\n]);`, spaImport]
-          .filter(Boolean)
-          .join("\n")
-      }
-
-      const lightningTargets = {
-        safari: (15 << 16) | (6 << 8), // 15.6
-        ios_saf: (15 << 16) | (6 << 8), // 15.6
-        edge: 115 << 16,
-        firefox: 102 << 16,
-        chrome: 109 << 16,
-      }
-
-      const cssContent = transform({
-        filename: "index.css",
-        code: Buffer.from(stylesheet),
-        minify: true,
-        targets: lightningTargets,
-        include: Features.MediaQueries,
-      }).code.toString()
-
-      const cssStringToFilename = new Map<string, string>()
-      for (const cssString of componentResources.componentCssStrings) {
-        if (cssStringToFilename.has(cssString)) continue
-
-        const wrapped = `@layer quartz-base {\n${cssString}\n}`
-        const minified = transform({
-          filename: "component.css",
-          code: Buffer.from(wrapped),
-          minify: true,
-          targets: lightningTargets,
-          include: Features.MediaQueries,
-        }).code.toString()
-
-        const hash = hashContent(minified)
-        const slug = `component-${hash}`
-        const filename = `${slug}.css`
-        cssStringToFilename.set(cssString, filename)
-
-        yield write({
-          ctx,
-          slug: slug as FullSlug,
-          ext: ".css",
-          content: minified,
-        })
-      }
-
-      ctx.componentCssMap = cssStringToFilename
-
-      // Extract inline CSS/JS from plugin externalResources() into external files.
-      // This prevents large inline payloads (e.g. theme CSS) from being duplicated
-      // into every HTML page's <head>.
-      const extractedInlineResources = new Map<string, string>()
-      for (const cssResource of resources.css) {
-        if (!(cssResource.inline ?? false)) continue
-
-        let output: string
-        try {
-          output = transform({
-            filename: "plugin-resource.css",
-            code: Buffer.from(cssResource.content),
-            minify: true,
-            targets: lightningTargets,
-            include: Features.MediaQueries,
-          }).code.toString()
-        } catch {
-          output = cssResource.content
-        }
-
-        const hash = hashContent(output)
-        const slug = `static/resource-style-${hash}`
-        const filename = `${slug}.css`
-        extractedInlineResources.set(cssResource.content, filename)
-
-        yield write({
-          ctx,
-          slug: slug as FullSlug,
-          ext: ".css",
-          content: output,
-        })
-      }
-
-      for (const jsResource of resources.js) {
-        if (jsResource.contentType !== "inline") continue
-
-        const minified = await joinScripts([jsResource.script])
-        const hash = hashContent(minified)
-        const loadTimePrefix = jsResource.loadTime === "beforeDOMReady" ? "before" : "after"
-        const slug = `static/resource-${loadTimePrefix}-${hash}`
-        const filename = `${slug}.js`
-        extractedInlineResources.set(jsResource.script, filename)
-
-        yield write({
-          ctx,
-          slug: slug as FullSlug,
-          ext: ".js",
-          content: minified,
-        })
-      }
-
-      ctx.extractedInlineResources = extractedInlineResources
-
-      const cssHash = useHashing ? hashContent(cssContent) : null
-      const prescriptHash = useHashing ? hashContent(prescript) : null
-      const postscriptHash = useHashing ? hashContent(postscript) : null
-
-      const cssSlug = cssHash ? `index-${cssHash}` : "index"
-      const prescriptSlug = prescriptHash ? `prescript-${prescriptHash}` : "prescript"
-      const postscriptSlug = postscriptHash ? `postscript-${postscriptHash}` : "postscript"
-
-      ctx.hashedResourceNames = {
-        "index.css": `${cssSlug}.css`,
-        "prescript.js": `${prescriptSlug}.js`,
-        "postscript.js": `${postscriptSlug}.js`,
-      }
+      const [prescript, postscript] = await Promise.all([
+        joinScripts(componentResources.beforeDOMLoaded),
+        joinScripts(componentResources.afterDOMLoaded),
+      ])
 
       yield write({
         ctx,
-        slug: cssSlug as FullSlug,
+        slug: "index" as FullSlug,
         ext: ".css",
-        content: cssContent,
+        content: transform({
+          filename: "index.css",
+          code: Buffer.from(stylesheet),
+          minify: true,
+          targets: {
+            safari: (15 << 16) | (6 << 8), // 15.6
+            ios_saf: (15 << 16) | (6 << 8), // 15.6
+            edge: 115 << 16,
+            firefox: 102 << 16,
+            chrome: 109 << 16,
+          },
+          include: Features.MediaQueries,
+        }).code.toString(),
       })
 
       yield write({
         ctx,
-        slug: prescriptSlug as FullSlug,
+        slug: "prescript" as FullSlug,
         ext: ".js",
         content: prescript,
       })
 
       yield write({
         ctx,
-        slug: postscriptSlug as FullSlug,
+        slug: "postscript" as FullSlug,
         ext: ".js",
         content: postscript,
       })

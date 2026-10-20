@@ -8,15 +8,13 @@ html {
   scroll-behavior: smooth;
   text-size-adjust: none;
   overflow-x: hidden;
-  width: 100vw;
-
-  @media all and ($mobile) {
-    scroll-padding-top: 4rem;
-  }
+  width: 100%;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  overflow-x: clip;
   box-sizing: border-box;
   background-color: var(--light);
   font-family: var(--bodyFont);
@@ -43,17 +41,23 @@ li,
 ol,
 ul,
 .katex,
-.math,
-.typst-doc,
-g[class~="typst-text"] {
+.math {
   color: var(--darkgray);
   fill: var(--darkgray);
-  overflow-wrap: break-word;
-  text-wrap: pretty;
+  hyphens: auto;
 }
 
-path[class~="typst-shape"] {
-  stroke: var(--darkgray);
+p,
+ul,
+text,
+a,
+li,
+ol,
+ul,
+.katex,
+.math {
+  overflow-wrap: anywhere;
+  /* tr and td removed from list of selectors for overflow-wrap, allowing them to use default 'normal' property value */
 }
 
 .math {
@@ -134,7 +138,7 @@ a {
 }
 
 .desktop-only {
-  display: contents;
+  display: initial;
   &.flex-component {
     display: flex;
   }
@@ -155,7 +159,7 @@ a {
     &.flex-component {
       display: flex;
     }
-    display: contents;
+    display: initial;
   }
 }
 
@@ -219,7 +223,7 @@ a {
     }
 
     & .sidebar {
-      gap: 1.2rem;
+      gap: 2rem;
       top: 0;
       box-sizing: border-box;
       padding: $topSpacing 2rem 2rem 2rem;
@@ -309,51 +313,33 @@ a {
   }
 }
 
-// ============================================================================
-// Page Frame Overrides
-// ============================================================================
-
-// Full-width frame: no sidebars, center content spans full width
-.page[data-frame="full-width"] > #quartz-body {
-  grid-template-columns: auto;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-    "grid-header"
-    "grid-center"
-    "grid-footer";
-
-  @media all and ($tablet) {
-    grid-template-columns: auto;
-  }
-
-  & .center.full-width {
-    max-width: 100%;
-    min-width: 100%;
-  }
-}
-
-// Minimal frame: no sidebars, no header/footer chrome, body content only + footer
-.page[data-frame="minimal"] > #quartz-body {
-  grid-template-columns: auto;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "grid-center"
-    "grid-footer";
-
-  @media all and ($tablet) {
-    grid-template-columns: auto;
-  }
-
-  & .center.minimal {
-    max-width: 100%;
-    min-width: 100%;
-    margin: 0;
-  }
-}
-
 .footnotes {
   margin-top: 2rem;
   border-top: 1px solid var(--lightgray);
+}
+
+@keyframes footnote-flash {
+  0%,
+  100% {
+    outline: 2px solid transparent;
+    border-radius: 3px;
+  }
+  50% {
+    outline: 2px solid rgb(171, 70, 66);
+    border-radius: 3px;
+  }
+}
+
+.footnote-flash {
+  animation: footnote-flash 1s ease-in-out 2;
+}
+
+sup:has(a[data-footnote-ref]) {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  line-height: 0;
+  font-size: 0.75em;
 }
 
 input[type="checkbox"] {
@@ -548,7 +534,6 @@ code {
   font-size: 0.9em;
   color: var(--dark);
   font-family: var(--codeFont);
-  font-variant-ligatures: none;
   border-radius: 5px;
   padding: 0.1rem 0.2rem;
   background: var(--lightgray);

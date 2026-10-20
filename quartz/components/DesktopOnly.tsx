@@ -3,11 +3,7 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 export default ((component: QuartzComponent) => {
   const Component = component
   const DesktopOnly: QuartzComponent = (props: QuartzComponentProps) => {
-    return (
-      <div class="desktop-only">
-        <Component {...props} />
-      </div>
-    )
+    return <Component displayClass="desktop-only" {...props} />
   }
 
   DesktopOnly.displayName = component.displayName

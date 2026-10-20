@@ -11,11 +11,14 @@
 
   & > .callout-content {
     display: grid;
-    transition: grid-template-rows 0.1s cubic-bezier(0.02, 0.01, 0.47, 1);
-    overflow: hidden;
+    transition: grid-template-rows 0.3s ease;
 
-    & > :first-child {
-      margin-top: 0;
+    & > .callout-content-inner {
+      overflow: hidden;
+
+      & > :first-child {
+        margin-top: 0;
+      }
     }
   }
 
@@ -48,11 +51,18 @@
     --callout-icon: var(--callout-icon-abstract);
   }
 
+  &[data-callout="code"] {
+    --color: #bababa;
+    --border: #303030;
+    --bg: #303030;
+    --callout-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M16 18l6-6-6-6M8 6l-6 6 6 6'/%3e%3c/svg%3e");
+  }
+
   &[data-callout="info"],
   &[data-callout="todo"] {
-    --color: #00b8d4;
-    --border: #00b8d444;
-    --bg: #00b8d410;
+    --color: #bababa;
+    --border: #1a3337;
+    --bg: #1a3337;
     --callout-icon: var(--callout-icon-info);
   }
 
@@ -60,10 +70,11 @@
     --callout-icon: var(--callout-icon-todo);
   }
 
-  &[data-callout="tip"] {
-    --color: #00bfa5;
-    --border: #00bfa544;
-    --bg: #00bfa510;
+  &[data-callout="tip"],
+  &[data-callout="important"] {
+    --color: #ab4642;
+    --border: #ffffff;
+    --bg: transparent;
     --callout-icon: var(--callout-icon-tip);
   }
 
@@ -106,9 +117,9 @@
   }
 
   &[data-callout="example"] {
-    --color: #7a43b5;
-    --border: #7a43b544;
-    --bg: #7a43b510;
+    --color: #bababa;
+    --border: #34293d;
+    --bg: #34293d;
     --callout-icon: var(--callout-icon-example);
   }
 
@@ -118,28 +129,8 @@
     --callout-icon: var(--callout-icon-quote);
   }
 
-  &.is-collapsed {
-    & > .callout-title > .fold-callout-icon {
-      transform: rotateZ(-90deg);
-    }
-
-    .callout-content {
-      & > * {
-        transition:
-          height 0.1s cubic-bezier(0.02, 0.01, 0.47, 1),
-          margin 0.1s cubic-bezier(0.02, 0.01, 0.47, 1),
-          padding 0.1s cubic-bezier(0.02, 0.01, 0.47, 1);
-        overflow-y: clip;
-        height: 0;
-        margin-bottom: 0;
-        margin-top: 0;
-        padding-bottom: 0;
-        padding-top: 0;
-      }
-      & > :first-child {
-        margin-top: -1rem;
-      }
-    }
+  &.is-collapsed > .callout-title > .fold-callout-icon {
+    transform: rotateZ(-90deg);
   }
 }
 
@@ -184,4 +175,8 @@
   .callout-title-inner {
     font-weight: $semiBoldWeight;
   }
+}
+
+.callout[data-callout-metadata="hide-icon"] .callout-icon {
+  display: none !important;
 }

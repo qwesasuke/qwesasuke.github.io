@@ -30,14 +30,11 @@ async function mouseEnterHandler(
     setPosition(popoverElement as HTMLElement)
 
     if (hash !== "") {
-      const inner = popoverElement.querySelector(".popover-inner") as HTMLElement | null
-      if (inner) {
-        const targetAnchor = `#popover-internal-${hash.slice(1)}`
-        const heading = inner.querySelector(targetAnchor) as HTMLElement | null
-        if (heading) {
-          // leave ~12px of buffer when scrolling to a heading
-          inner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
-        }
+      const targetAnchor = `#popover-internal-${hash.slice(1)}`
+      const heading = popoverInner.querySelector(targetAnchor) as HTMLElement | null
+      if (heading) {
+        // leave ~12px of buffer when scrolling to a heading
+        popoverInner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
       }
     }
   }
@@ -60,9 +57,7 @@ async function mouseEnterHandler(
   })
 
   if (!response) return
-  const rawContentType = response.headers.get("Content-Type")
-  if (!rawContentType) return
-  const [contentType] = rawContentType.split(";")
+  const [contentType] = response.headers.get("Content-Type")!.split(";")
   const [contentTypeCategory, typeInfo] = contentType.split("/")
 
   const popoverElement = document.createElement("div")
@@ -125,8 +120,10 @@ function clearActivePopover() {
   allPopoverElements.forEach((popoverElement) => popoverElement.classList.remove("active-popover"))
 }
 
-function setupPopovers() {
-  const links = [...document.querySelectorAll("a.internal")] as HTMLAnchorElement[]
+document.addEventListener("nav", () => {
+  const links = [
+    ...document.querySelectorAll("a.internal:not([data-footnote-ref])"),
+  ] as HTMLAnchorElement[]
   for (const link of links) {
     link.addEventListener("mouseenter", mouseEnterHandler)
     link.addEventListener("mouseleave", clearActivePopover)
@@ -135,7 +132,4 @@ function setupPopovers() {
       link.removeEventListener("mouseleave", clearActivePopover)
     })
   }
-}
-
-document.addEventListener("nav", setupPopovers)
-document.addEventListener("render", setupPopovers)
+})

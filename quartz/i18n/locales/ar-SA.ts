@@ -5,7 +5,6 @@ export default {
     title: "غير معنون",
     description: "لم يتم تقديم أي وصف",
   },
-  direction: "rtl" as const,
   components: {
     callout: {
       note: "ملاحظة",

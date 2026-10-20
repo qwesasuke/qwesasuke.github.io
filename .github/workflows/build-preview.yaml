@@ -28,18 +28,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Cache Quartz plugins
-        uses: actions/cache@v6
-        with:
-          path: .quartz/plugins
-          key: ${{ runner.os }}-plugins-${{ hashFiles('quartz.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-plugins-
-
-      - run: npm install
-
-      - name: Install Quartz plugins
-        run: npx quartz plugin install
+      - run: npm ci
 
       - name: Check types and style
         run: npm run check

@@ -44,22 +44,16 @@ const cleanupFns: Set<(...args: any[]) => void> = new Set()
 window.addCleanup = (fn) => cleanupFns.add(fn)
 
 function startLoading() {
-  document.querySelector(".navigation-progress")?.remove()
   const loadingBar = document.createElement("div")
   loadingBar.className = "navigation-progress"
   loadingBar.style.width = "0"
-  document.body.prepend(loadingBar)
+  if (!document.body.contains(loadingBar)) {
+    document.body.appendChild(loadingBar)
+  }
 
   setTimeout(() => {
     loadingBar.style.width = "80%"
   }, 100)
-}
-
-function stopLoading() {
-  const loadingBar = document.querySelector(".navigation-progress")
-  if (loadingBar) {
-    loadingBar.remove()
-  }
 }
 
 let isNavigating = false
@@ -107,8 +101,12 @@ async function _navigate(url: URL, isBack: boolean = false) {
   announcer.dataset.persist = ""
   html.body.appendChild(announcer)
 
-  document.querySelector(".navigation-progress")?.remove()
-  micromorph(document.body, html.body)
+  // morph body
+  await micromorph(document.body, html.body)
+  if (!document.getElementById("quartz-root")) {
+    window.location.assign(url)
+    return
+  }
 
   // scroll into place and add history
   if (!isBack) {
@@ -121,9 +119,9 @@ async function _navigate(url: URL, isBack: boolean = false) {
   }
 
   // now, patch head, re-executing scripts
-  const elementsToRemove = document.head.querySelectorAll(":not([data-persist])")
+  const elementsToRemove = document.head.querySelectorAll(":not([spa-preserve])")
   elementsToRemove.forEach((el) => el.remove())
-  const elementsToAdd = html.head.querySelectorAll(":not([data-persist])")
+  const elementsToAdd = html.head.querySelectorAll(":not([spa-preserve])")
   elementsToAdd.forEach((el) => document.head.appendChild(el))
 
   // delay setting the url until now
@@ -145,7 +143,6 @@ async function navigate(url: URL, isBack: boolean = false) {
     console.error(e)
     window.location.assign(url)
   } finally {
-    stopLoading()
     isNavigating = false
   }
 }
