@@ -2,12 +2,10 @@
 publish: true
 permalink: /ru/archive/Siberian-GameJam-November-2026.md
 created: 2026-11-01T18:31:25+05:00
-modified: 2026-11-01T18:40:44+05:00
+modified: 2026-11-01T18:58:51+05:00
 ---
 
 # Анализ топ тем
-
-[[al - варианты]]
 
 **Безопасная зона**
 
