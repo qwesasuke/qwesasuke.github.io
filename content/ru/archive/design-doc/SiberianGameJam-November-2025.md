@@ -40,7 +40,7 @@ Sci-fi проклятая тема.
 
 Бумажный змей, как путеводитель - нарратор
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image7.webp]]
+![[base/attachments/sibN-25/sibM25-image7.webp]]
 
 Сборщик урожая - харвест мун, стардью валли
 
@@ -76,7 +76,7 @@ visual - Edenwound
 
 Имеет не только один смысл - только надо предупредить игроков об этом смысле
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image1.webp]]
+![[base/attachments/sibN-25/sibM25-image1.webp]]
 
 Нужно изготавливать таблички с клише фразами - ОТЛИЧНОЕ КОМБО
 
@@ -148,16 +148,16 @@ idle
 
 ## Брейншторм 1
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image2.webp]]
+![[base/attachments/sibN-25/sibM25-image2.webp]]
 
 ## Брейншторм 2
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image10.webp]]
+![[base/attachments/sibN-25/sibM25-image10.webp]]
 
 ## Первый прогресс
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image3.webp]]![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image8.webp]] ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image5.webp]] ![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image4.webp]]
+![[base/attachments/sibN-25/sibM25-image3.webp]]![[base/attachments/sibN-25/sibM25-image8.webp]] ![[base/attachments/sibN-25/sibM25-image5.webp]] ![[base/attachments/sibN-25/sibM25-image4.webp]]
 
 ## Начало построения концепции
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibN-25/sibM25-image9.webp]]
+![[base/attachments/sibN-25/sibM25-image9.webp]]

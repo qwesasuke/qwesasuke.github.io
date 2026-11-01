@@ -29,6 +29,7 @@ Hi! I’m an **indie game developer**. I create games, experiment with game desi
 - [[SiberianGameJam-November-2025]]
 - [[LudumDare-59]]
 - [[SIberian-GameJam-May-2026]]
+- [[Siberian-GameJam-November-2026]]
 
 # 🎶Tracks
 

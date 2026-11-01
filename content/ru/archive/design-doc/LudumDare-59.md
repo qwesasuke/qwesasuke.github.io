@@ -28,7 +28,7 @@ Deponia: The Complete Journey: Включает сюжетные моменты,
 
 босс может быть каким то таким
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image3.webp]]
+![[base/attachments/design-doc-ld59/ld-59-image3.webp]]
 
 Идея - переключение между личностями
 
@@ -129,7 +129,7 @@ Manhunt: Стелс-хоррор, где ориентирование по зв�
 
 Signal Zone (стратегия)
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image1.webp]]
+![[base/attachments/design-doc-ld59/ld-59-image1.webp]]
 
 Voices of the Void
 
@@ -164,15 +164,15 @@ Petcope
 
 локации возможные
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image7.webp]]
+![[base/attachments/design-doc-ld59/ld-59-image7.webp]]
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image5.webp]]
+![[base/attachments/design-doc-ld59/ld-59-image5.webp]]
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image2.webp]]
+![[base/attachments/design-doc-ld59/ld-59-image2.webp]]
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image6.webp]]
+![[base/attachments/design-doc-ld59/ld-59-image6.webp]]
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image4.webp]]
+![[base/attachments/design-doc-ld59/ld-59-image4.webp]]
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image8.webp]]\
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/design-doc-ld59/ld-59-image9.webp]] v
+![[base/attachments/design-doc-ld59/ld-59-image8.webp]]\
+![[base/attachments/design-doc-ld59/ld-59-image9.webp]] v

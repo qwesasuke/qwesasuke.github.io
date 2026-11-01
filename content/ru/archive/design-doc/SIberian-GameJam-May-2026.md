@@ -1,8 +1,8 @@
 ---
 publish: true
 permalink: /ru/archive/design-doc/SIberian-GameJam-May-2026.md
-created: 2026-09-15T19:28:48.561Z
-modified: 2026-10-03T12:43:39.563Z
+created: 2026-09-16T00:28:48+05:00
+modified: 2026-10-03T17:43:36+05:00
 ---
 
 GamePlay
@@ -12,7 +12,7 @@ GamePlay
 Арена (локация) - основное место игры.\
 Левел дизайн локации в духе карт квейк:
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image2.webp]]
+![[base/attachments/sibm-26/sibm26-image2.webp]]
 
 Главный герой сражается с противниками на Арене.\
 После победы игроку предоставляется хаб.\
@@ -77,7 +77,7 @@ GamePlay
 
 reference
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image1.webp]]
+![[base/attachments/sibm-26/sibm26-image1.webp]]
 
 Какие нибудь пассивные оружия как в вампайр лайках
 
@@ -87,7 +87,7 @@ reference
 Дальник (зомби стоящий на месте или в воздухе)\
 Танк (милишник)
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image3.webp]]
+![[base/attachments/sibm-26/sibm26-image3.webp]]
 
 Visual
 
@@ -97,9 +97,9 @@ Visual
 
 https://www.youtube.com/watch?v=o1hggJOIY\_c\&list=RDo1hggJOIY\_c\&start\_radio=1
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image5.webp]]
+![[base/attachments/sibm-26/sibm26-image5.webp]]
 
-![[old/06.System/Attachments/BInaryFiles/Media/Images/Groups/sibm-26/sibm26-image4.webp]]
+![[base/attachments/sibm-26/sibm26-image4.webp]]
 
 Polishing features
 

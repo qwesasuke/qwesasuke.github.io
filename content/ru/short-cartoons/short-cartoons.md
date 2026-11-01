@@ -1,8 +1,8 @@
 ---
 publish: true
 permalink: /ru/short-cartoons/short-cartoons.md
-created: 2026-09-14T14:20:29.000Z
-modified: 2026-10-03T12:43:38.758Z
+created: 2026-09-14T19:20:29+05:00
+modified: 2026-10-03T17:43:36+05:00
 ---
 
 ```dataview
